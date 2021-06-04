@@ -1,0 +1,105 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.34.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Kacper kacpe, WAT, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.34.0.0
+Toolchain Path:  D:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.34.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      UL2CM3.DLL V1.163.9.0
+Dialog DLL:      TCM.DLL V1.48.0.0
+ 
+<h2>Project:</h2>
+D:\Projekty\Keil\F4_DMA_ADC\dma.uvprojx
+Project File Date:  06/04/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'D:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+main.c(3): warning: In file included from...
+./Delay.h(8): warning: no newline at end of file [-Wnewline-eof]
+void Delay_ms (uint16_t ms);
+                            ^
+main.c(12): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+2 warnings generated.
+compiling main.c...
+compiling RccConfig.c...
+Delay.c(3): warning: In file included from...
+./Delay.h(8): warning: no newline at end of file [-Wnewline-eof]
+void Delay_ms (uint16_t ms);
+                            ^
+Delay.c(42): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+2 warnings generated.
+compiling Delay.c...
+compiling system_stm32f4xx.c...
+adc.c(3): warning: In file included from...
+./adc.h(11): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+adc.c(26): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        ADC1->CR1 &= ~(1 << 24);        // 12 bit RES
+                  ~~ ^~~~~~~~~~
+adc.c(34): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        ADC1->SMPR2 &= ~((1 << 3) | (1 << 12)); // Sampling time of 3 cycles for channel 1 and channel 4
+                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~
+adc.c(68): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        ADC1->SQR3 |= (channel << 0);           // conversion in regular sequence (423s)
+                   ~~  ~~~~~~~~^~~~
+adc.c(73): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+5 warnings generated.
+compiling adc.c...
+assembling startup_stm32f407xx.s...
+linking...
+Program Size: Code=376 RO-data=408 RW-data=0 ZI-data=1632  
+".\Objects\dma.axf" - 0 Error(s), 9 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
+                ARM.CMSIS.5.7.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.4.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
+                Keil.STM32F4xx_DFP.2.15.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.6.3
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  D:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  D:\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.4.0
+
+   * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+      Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>

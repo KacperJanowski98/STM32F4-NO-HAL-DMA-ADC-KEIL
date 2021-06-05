@@ -2,7 +2,7 @@
 #include "RccConfig.h"
 #include "adc.h"
 
-void ADC_init (void)
+void ADC_Init (void)
 {
 	/************** STEPS TO FOLLOW *******************
 	1. Enable ADC and GPIO clock
@@ -34,13 +34,19 @@ void ADC_init (void)
 	ADC1->SMPR2 &= ~((7 << 3) | (7 << 12));	// Sampling time of 3 cycles for channel 1 and channel 4
 	
 	// 6. Set the Regular channel sequence length in ADC_SQR1 (422s)
-	ADC1->SQR1 |= (1 << 20);	// SQR1_L = 1 for 2 conversion
+	ADC1->SQR1 |= (2 << 20);	// SQR1_L = 2 for 3 conversion
 	
 	// 7. Set the Respective GPIO PINs in the Analog Mode (281s)
 	GPIOA->MODER |= (3 << 2);	// analog mode for PA 1
 	GPIOA->MODER |= (3 << 8);	// analog mode for PA 4
 	
 	/***********************************************************************************************/
+	
+	// Sampling Freq for Temp Sensor
+	ADC1->SMPR1 |= (7<<24);		// Sampling time of 24 us
+	
+	// Set the TSVREFE Bit to wake the sensor
+	ADC->CCR |= (1<<23);
 	
 	// Enable DMA for ADC
 	ADC1->CR2 |= (1<<8);
@@ -51,6 +57,8 @@ void ADC_init (void)
 	// Channel Sequence
 	ADC1->SQR3 |= (1<<0);		// SEQ1 for Channel 1
 	ADC1->SQR3 |= (4<<5);		// SEG2 for Channel 4
+	//ADC1->SQR3 |= (18<<10);	// SEQ3 for Channel 18
+	ADC1->SQR3 |= (16<<10);	// SEQ3 for Channel 16
 	
 }
 
@@ -66,7 +74,7 @@ void ADC_Enable (void)
 	while (delay--);
 }
 
-void ADC_Start (int channel)
+void ADC_Start (void)
 {
 	/********** STPES FOLLOW *************
 	1. Clear the Status register

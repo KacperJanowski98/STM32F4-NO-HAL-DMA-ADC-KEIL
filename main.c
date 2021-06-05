@@ -24,6 +24,18 @@ void DMA_Init (void)
 	DMA2_Stream0->CR &= ~(7<<25);		// Channel 0 selected
 }
 
+void DMA_Config (uint32_t srcAdd, uint32_t destAdd, uint16_t size)
+{
+	DMA2_Stream0->NDTR = size;		// Set the size of the transfer
+	
+	DMA2_Stream0->PAR = srcAdd;		// Source address is peripheral address
+	
+	DMA2_Stream0->M0AR = destAdd;		// Destination Address is memory address
+	
+	// Enable the DMA Stream
+	DMA2_Stream0->CR |= (1<<0);		// EN = 1
+}
+
 int main ()
 {
 
